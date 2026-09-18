@@ -4,10 +4,31 @@ RELEX "Memory With a Receipt" challenge, AaltoAI Hackathon 2026. Submissions clo
 Sunday 12:00. The deliverable is a deployed URL the judges use themselves, plus written
 answers to the 9 practice questions in `corpus/acme/PRACTICE-QUESTIONS.md`.
 
-Two teammates are each building a **complete independent version** in separate repos, then
-comparing at a hard stop on Saturday evening and continuing with the stronger one. This repo
-is one of those versions. There is no shared-file coordination to worry about — build the
-whole thing.
+## Git protocol — MANDATORY, both teammates share this repo
+
+Two people work on this one repo at the same time, each with their own Claude Code session.
+Neither agent can see what the other just did. These steps are not optional.
+
+**Before writing or editing any code, every time:**
+
+1. `git pull --rebase` — get the teammate's latest work.
+2. Read the files you are about to change, as they are *now*. Do not rely on anything you
+   remember from earlier in the session; the teammate may have rewritten it since.
+3. If the pull brought in changes that overlap what the operator asked for, say so before
+   editing — the work may already be done, or done differently.
+
+**After any change that works:**
+
+4. `git add` the specific files, commit with a clear message, and `git push` immediately.
+   Never leave working code uncommitted while the teammate is active. Small, frequent pushes
+   are what keep the two sessions from colliding.
+
+**If a push is rejected** ("fetch first" / non-fast-forward): stop. Run `git pull --rebase`,
+re-read the conflicting file, and resolve it deliberately. Never use `git push --force`, and
+never discard the teammate's commits to make an error go away. If the conflict is not
+trivially resolvable, tell the operator to coordinate with their teammate in chat.
+
+Announce dependency changes (`package.json`) to the teammate before installing.
 
 ## Scoring — optimise for this, not for elegance
 
