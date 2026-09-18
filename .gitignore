@@ -1,0 +1,10 @@
+node_modules/
+.next/
+.vercel
+.env
+.env.local
+*.pptx
+*.pdf
+corpus.zip
+.claude/
+graphify-out/
