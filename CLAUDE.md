@@ -1,22 +1,40 @@
-# Team file ownership — READ THIS FIRST
+# Project context — READ THIS FIRST
 
-Two people work on this repo at the same time, each with their own Claude Code session.
-Editing a file outside your owner's lane causes merge conflicts that neither teammate can
-resolve. Treat these boundaries as hard.
+RELEX "Memory With a Receipt" challenge, AaltoAI Hackathon 2026. Submissions close
+Sunday 12:00. The deliverable is a deployed URL the judges use themselves, plus written
+answers to the 9 practice questions in `corpus/acme/PRACTICE-QUESTIONS.md`.
 
-| Lane | Owner | Paths |
-|---|---|---|
-| Backend | Luan | `lib/`, `scripts/`, `app/api/`, `data/` |
-| Frontend | Teammate | `app/page.js`, `app/layout.js`, `components/` |
-| Shared | Both — ask in chat before editing | `package.json`, `CLAUDE.md`, `README.md` |
+Two teammates are each building a **complete independent version** in separate repos, then
+comparing at a hard stop on Saturday evening and continuing with the stronger one. This repo
+is one of those versions. There is no shared-file coordination to worry about — build the
+whole thing.
 
-Rules for the agent:
-- Before editing a file, check which lane it is in. If it is not your operator's lane, stop
-  and tell them to ask their teammate instead. Do not edit it "just this once".
-- Never install a dependency without saying so — `package.json` conflicts are the worst kind.
-  Tell the operator to announce it to their teammate first.
-- Prefer creating a new file in your own lane over editing a file in the other lane.
-- `corpus/` is read-only source data for the challenge. Never modify or reformat it.
+## Scoring — optimise for this, not for elegance
+
+| Weight | Criterion |
+|---|---|
+| 25% | Provenance — every claim cites a document and a position within it |
+| 20% | Attribution — who proposed vs who agreed vs nobody did |
+| 20% | Currency — superseded decisions flagged; never-true records not repeated |
+| 20% | Deletion — a named person gone from index, embeddings and derived artefacts |
+| 15% | Initiative — one capability beyond the four above, plus honest limitations |
+
+## Corpus traps — the README documents these deliberately
+
+- `corpus/` is read-only source data. Never modify or reformat it.
+- Emails are reverse-chronological with every earlier message quoted beneath. Split threads
+  into individual messages or quoted text will be duplicated and misattributed.
+- `reports/` holds 2 files containing 25 separate dated updates (18 weekly, 7 monthly), newest
+  first. Chunk per update, not per file.
+- Image placeholders take four different forms, including Swedish. Do not match one string.
+- Some speakers begin a number and get cut off. Completing it invents a source.
+- Two practice questions have no clean answer. "The archive does not say" beats a guess.
+
+## Architecture constraint
+
+45 documents is small. No vector database — embeddings live in a JSON file we own, searched
+by brute-force cosine similarity. This is deliberate: it makes deletion a filter over an array
+rather than a fight with a vector store, which is 20% of the score.
 
 ## graphify
 
